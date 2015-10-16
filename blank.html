@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YASGUI</title>
+  <link rel="icon"  type="image/png" href="doc/imgs/favicon.png">
+  <link href="dist/yasgui.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+  
+	<div id='showcase'></div>
+ <script src="dist/yasgui.bundled.min.js"></script>
+<script type="text/javascript">
+  var config = {"catalogueEndpoints":[{"endpoint": "http://localhost:8890/sparql", "title" : "Local Endpoint"}]};
+  var cfg1 = YASGUI.YASQE.defaults;
+  YASGUI.YASQE.defaults = cfg1;
+  YASGUI.defaults.catalogueEndpoints = [{endpoint: 'http://localhost:8890/sparql', title: 'Local Endpoint'}];
+  YASGUI.YASQE.defaults.sparql.endpoint = "http://localhost:8890/sparql";
+  YASGUI.YASQE.defaults.sparql.getQueryForAjax = function(yasqe) {
+      var b = yasqe.getValue();
+      var a = "define input:default-graph-exclude <http://www.openlinksw.com/schemas/virtrdf#>, <http://localhost:8890/DAV/>, <http://www.w3.org/2002/07/owl#>, <http://localhost:8890/sparql>, <http://www.w3.org/ns/ldp#> " +  yasqe.getValue();
+      return a;
+   };
+
+  var yasgui = YASGUI(document.getElementById("showcase"), config);
+</script>
+  </body>
+</html>
+
+
+
+
+
+
